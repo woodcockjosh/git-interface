@@ -9,6 +9,7 @@ export declare class Git extends EventEmitter {
     constructor(options: IGitOptions);
     protected gitExec(cmd: string): Promise<string>;
     protected getDiffFileList(diffOptions?: string): Promise<string[]>;
+    init(): Promise<string>;
     setDir(dir: string): void;
     clone(repository: string, dest: string, options?: {
         depth?: number;

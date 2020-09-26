@@ -52,6 +52,9 @@ class Git extends events_1.EventEmitter {
             }
         }));
     }
+    init() {
+        return this.gitExec('init');
+    }
     setDir(dir) {
         this.dir = dir;
     }

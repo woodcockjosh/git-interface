@@ -52,6 +52,10 @@ export class Git extends EventEmitter{
 		});
 	}
 
+	public init(): Promise<string> {
+		return this.gitExec('init');
+	}
+
 	public setDir(dir: string) {
 		this.dir = dir;
 	}

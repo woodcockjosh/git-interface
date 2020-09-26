@@ -37,6 +37,8 @@ export declare class Git extends EventEmitter {
     removeRemoteBranch(branchName: string): Promise<string>;
     getLocalBranchList(): Promise<unknown>;
     getRemoteBranchList(): Promise<unknown>;
+    getRemotes(): Promise<string[]>;
+    getRemoteUrl(name: string): Promise<string>;
     getTimeOfLastCommit(branchName: string): Promise<unknown>;
     getHashOfLastCommit(branchName: string): Promise<unknown>;
 }

@@ -211,6 +211,26 @@ class Git extends events_1.EventEmitter {
             }
         }));
     }
+    getRemotes() {
+        return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.gitExec(`remote`);
+                const remoteNames = result
+                    .split('\n')
+                    .map((item) => item.trim());
+                resolve(remoteNames);
+            }
+            catch (err) {
+                reject(err);
+            }
+        }));
+    }
+    getRemoteUrl(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.gitExec(`remote get-url ${name}`);
+            return result.trim();
+        });
+    }
     getTimeOfLastCommit(branchName) {
         return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
             try {

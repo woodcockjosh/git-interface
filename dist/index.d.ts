@@ -17,7 +17,10 @@ export declare class Git extends EventEmitter {
     checkout(branchName: string): Promise<string>;
     updateSubmodules(init?: boolean, recursive?: boolean): Promise<string>;
     commit(message: string, all?: boolean): Promise<string>;
-    pull(): Promise<unknown>;
+    pull(remote?: string, options?: {
+        branch?: string;
+        rebase?: boolean;
+    }): Promise<unknown>;
     push(remote?: string): Promise<unknown>;
     add(): Promise<string>;
     addRemote(name: string, url: string): Promise<string>;

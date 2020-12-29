@@ -81,11 +81,19 @@ class Git extends events_1.EventEmitter {
         const allOption = all ? 'a' : '';
         return this.gitExec(`commit -${allOption}m '${escapedMessage}'`);
     }
-    pull() {
+    pull(remote = 'origin', options) {
         return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+            const opts = options || {};
             try {
-                const branch = yield this.getBranchName();
-                yield this.gitExec(`pull origin ${branch}`);
+                let branch;
+                if (opts.branch) {
+                    branch = opts.branch;
+                }
+                else {
+                    branch = yield this.getBranchName();
+                }
+                const rebaseOpt = opts.rebase ? ' -r' : '';
+                yield this.gitExec(`pull ${remote} ${branch}${rebaseOpt}`);
                 resolve();
             }
             catch (err) {
